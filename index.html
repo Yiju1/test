@@ -5,87 +5,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home Page</title>
+    <title>Markdown Render</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
+            padding: 2rem;
             background-color: #f4f4f4;
         }
 
-        header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 1rem;
-            text-align: center;
-        }
-
-        nav {
-            text-align: center;
-            margin-top: 1rem;
-        }
-
-        nav a {
-            margin: 0 15px;
-            text-decoration: none;
-            color: #333;
-        }
-
-        main {
+        #content {
+            background: white;
             padding: 2rem;
-            text-align: center;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
-        footer {
-            background-color: #333;
-            color: white;
-            padding: 1rem;
-            text-align: center;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+        h1, h2 {
+            color: #4CAF50;
         }
     </style>
 </head>
 
 <body>
-    <header>
-        <h1>Welcome to My Website</h1>
-    </header>
 
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#contact">Contact</a>
-    </nav>
+    <div id="content">
+        Loading content...
+    </div>
 
-    <main>
-        <section id="home">
-            <h2>Home Section</h2>
-            <p>This is the home section of the website.</p>
-        </section>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+        // Function to fetch and render the markdown file
+        async function renderMarkdown() {
+            const response = await fetch('content.md');
+            const markdown = await response.text();
+            document.getElementById('content').innerHTML = marked(markdown);
+        }
 
-        <section id="about">
-            <h2>About Section</h2>
-            <p>Information about the website or yourself.</p>
-        </section>
+        // Call the function to render the markdown content
+        renderMarkdown();
+    </script>
 
-        <section id="services">
-            <h2>Services Section</h2>
-            <p>Details about the services offered.</p>
-        </section>
-
-        <section id="contact">
-            <h2>Contact Section</h2>
-            <p>How to get in touch.</p>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2024 Your Name. All rights reserved.</p>
-    </footer>
 </body>
 
 </html>
